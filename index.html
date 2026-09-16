@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dravya Mehta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F2ECDD;
+    --surface: #FBF8F0;
+    --ink: #14213D;
+    --ink-soft: #4A5578;
+    --line: rgba(20, 33, 61, 0.14);
+    --orange: #E1611C;
+    --orange-ink: #FBF3EA;
+    --green: #2F6F4E;
+    --wood: #C97C42;
+  }
+ 
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0F1C2E;
+      --surface: #16283F;
+      --ink: #F2ECDD;
+      --ink-soft: #B7C1D9;
+      --line: rgba(242, 236, 221, 0.16);
+      --orange: #FF8A3D;
+      --orange-ink: #1B1103;
+      --green: #4CAF7D;
+      --wood: #D89A66;
+    }
+  }
+ 
+  :root[data-theme="dark"] {
+    --bg: #0F1C2E;
+    --surface: #16283F;
+    --ink: #F2ECDD;
+    --ink-soft: #B7C1D9;
+    --line: rgba(242, 236, 221, 0.16);
+    --orange: #FF8A3D;
+    --orange-ink: #1B1103;
+    --green: #4CAF7D;
+    --wood: #D89A66;
+  }
+ 
+  * { box-sizing: border-box; }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+ 
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+ 
+  h1, h2, h3, .display {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+ 
+  a { color: inherit; }
+ 
+  /* ---------- Top mark ---------- */
+  .mark {
+    padding: 28px 0 0;
+  }
+  .mark .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .badge {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .mark span.tag {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+ 
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 64px 0 56px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.02;
+  }
+  .hero .role {
+    margin-top: 18px;
+    font-size: 19px;
+    color: var(--ink-soft);
+    max-width: 46ch;
+  }
+  .hero .loc {
+    margin-top: 20px;
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+ 
+  .card {
+    background: var(--orange);
+    color: var(--orange-ink);
+    border-radius: 18px;
+    padding: 26px 24px;
+    transform: rotate(1.2deg);
+    box-shadow: 0 18px 40px -20px rgba(20,33,61,0.35);
+  }
+  .card .num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .card .num-label {
+    font-size: 14px;
+    margin-top: 2px;
+    opacity: 0.85;
+  }
+  .card .roles {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(0,0,0,0.14);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+ 
+  /* ---------- Stats row ---------- */
+  .stats {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 36px 0;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .stat .num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--green);
+  }
+  .stat .num.num-sm {
+    font-size: 30px;
+  }
+  .stat .label {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+ 
+  /* ---------- Sections ---------- */
+  .section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .section:last-of-type { border-bottom: none; }
+  .section-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+  }
+  .section h2 {
+    font-size: 26px;
+  }
+  .section p {
+    max-width: 58ch;
+    color: var(--ink-soft);
+    font-size: 16.5px;
+  }
+  .section p + p { margin-top: 12px; }
+  .pill {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 7px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .pill:hover {
+    background: var(--orange);
+    color: var(--orange-ink);
+    border-color: var(--orange);
+  }
+  .pill.soon {
+    opacity: 0.55;
+    cursor: default;
+  }
+  .pill.soon:hover {
+    background: none;
+    color: var(--ink);
+    border-color: var(--line);
+  }
+ 
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .project {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .project:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .project-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+  }
+ 
+  footer {
+    padding: 48px 0 64px;
+  }
+  footer p {
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+  footer .foot-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    color: var(--ink);
+  }
+ 
+  @media (prefers-reduced-motion: no-preference) {
+    .hero h1, .hero .role, .card {
+      animation: rise 0.7s ease both;
+    }
+    .hero .role { animation-delay: 0.08s; }
+    .card { animation-delay: 0.16s; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .card { animation-name: riseCard; }
+    @keyframes riseCard {
+      from { opacity: 0; transform: translateY(14px) rotate(1.2deg); }
+      to { opacity: 1; transform: translateY(0) rotate(1.2deg); }
+    }
+  }
+ 
+  @media (max-width: 760px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .card { transform: rotate(0.6deg); max-width: 280px; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .section-grid { grid-template-columns: 1fr; gap: 10px; }
+  }
+ 
+  @media (max-width: 420px) {
+    .stats-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+ 
+  <div class="mark">
+    <div class="wrap">
+      <div class="badge">DM</div>
+      <span class="tag">Resume</span>
+    </div>
+  </div>
+ 
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Dravya Mehta</h1>
+        <p class="role">I'm an 8th grader who builds websites, tracks the stock market, teaches math to 5th graders, and runs a sports page on the side.</p>
+        <p class="loc">Grade 8 at Next School</p>
+      </div>
+      <div class="card">
+        <div class="num">08</div>
+        <div class="num-label">Grade</div>
+        <div class="roles">
+          <span>Builder</span>
+          <span>Investor</span>
+          <span>Tutor</span>
+          <span>Creator</span>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <div class="stats">
+    <div class="wrap stats-grid">
+      <div class="stat">
+        <div class="num">3</div>
+        <div class="label">Websites built with a friend</div>
+      </div>
+      <div class="stat">
+        <div class="num num-sm">5th Grade</div>
+        <div class="label">I teach them math</div>
+      </div>
+      <div class="stat">
+        <div class="num">2</div>
+        <div class="label">Sports covered on Instagram</div>
+      </div>
+    </div>
+  </div>
+ 
+  <section class="section">
+    <div class="wrap section-grid">
+      <h2>What I build</h2>
+      <div>
+        <p>I've built three websites with a friend, using Base44 and Claude to design and ship them from scratch.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="section">
+    <div class="wrap section-grid">
+      <h2>My websites</h2>
+      <div class="projects">
+        <div class="project">
+          <span class="project-name">Train 30</span>
+          <a class="pill" href="https://find-flow-state-diligent.base44.app/" target="_blank" rel="noopener">Visit site →</a>
+        </div>
+        <div class="project">
+          <span class="project-name">Study Buddy</span>
+          <a class="pill" href="https://delightful-study-buddy-flow.base44.app/" target="_blank" rel="noopener">Visit site →</a>
+        </div>
+        <div class="project">
+          <span class="project-name">What Now</span>
+          <span class="pill soon">Coming soon</span>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="section">
+    <div class="wrap section-grid">
+      <h2>Where I invest</h2>
+      <div>
+        <p>I've spent time in the stock market — following companies, watching how prices move, and learning to read the numbers behind a business before making a decision. It's taught me patience and how to think in terms of risk, not just gut feeling.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="section">
+    <div class="wrap section-grid">
+      <h2>What I run</h2>
+      <div>
+        <p>I run <strong>@Dravya212</strong>, an Instagram page covering football and basketball — highlights, opinions, and updates for other fans who follow both sports closely.</p>
+        <a class="pill" href="https://instagram.com/dravya212" target="_blank" rel="noopener">See the page →</a>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="section">
+    <div class="wrap section-grid">
+      <h2>Who I teach</h2>
+      <div>
+        <p>Together with a classmate, I teach math to a group of 5th graders. Breaking down problems for someone younger has taught me the subject better than just studying it myself ever did.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <footer>
+    <div class="wrap">
+      <p><span class="foot-name">Dravya Mehta</span> — builder, investor, tutor, and the person behind @Dravya212. Find me there to talk sports, stocks, or the next website.</p>
+      <a class="pill" href="https://mail.google.com/mail/?view=cm&fs=1&to=dravya.mehta@nextschool.org" target="_blank" rel="noopener">dravya.mehta@nextschool.org</a>
+    </div>
+  </footer>
+ 
+</body>
+</html>
+ 
