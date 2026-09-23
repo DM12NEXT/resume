@@ -236,7 +236,7 @@
   }
   .project {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 16px;
     padding-bottom: 16px;
@@ -246,10 +246,25 @@
     border-bottom: none;
     padding-bottom: 0;
   }
+  .project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
   .project-name {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 600;
     font-size: 17px;
+  }
+  .project-desc {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    margin: 0;
+    max-width: 40ch;
+  }
+  .project .pill {
+    margin-top: 2px;
+    flex-shrink: 0;
   }
  
   footer {
@@ -285,12 +300,8 @@
   @media (max-width: 760px) {
     .hero-grid { grid-template-columns: 1fr; }
     .card { transform: rotate(0.6deg); max-width: 280px; }
-    .stats-grid { grid-template-columns: 1fr 1fr; }
     .section-grid { grid-template-columns: 1fr; gap: 10px; }
-  }
- 
-  @media (max-width: 420px) {
-    .stats-grid { grid-template-columns: 1fr; }
+    .project { flex-direction: column; align-items: flex-start; gap: 10px; }
   }
 </style>
 </head>
@@ -307,8 +318,7 @@
     <div class="wrap hero-grid">
       <div>
         <h1>Dravya Mehta</h1>
-        <p class="role">I am a 8th Grade at Next School passionate about football and exploring different fields.</p>
-        <p class="loc">Grade 8 at Next School</p>
+        <p class="role">I am an 8th Grader at Next School, passionate about football and exploring different fields.</p>
       </div>
       <div class="card">
         <div class="num">08</div>
@@ -337,15 +347,31 @@
       <h2>My websites</h2>
       <div class="projects">
         <div class="project">
-          <span class="project-name">Train 30</span>
+          <div class="project-info">
+            <span class="project-name">Train 30</span>
+            <p class="project-desc">Pick a sport and your skill level, and get a 30-day plan built to help you get better at it.</p>
+          </div>
           <a class="pill" href="https://find-flow-state-diligent.base44.app/" target="_blank" rel="noopener">Visit site →</a>
         </div>
         <div class="project">
-          <span class="project-name">Study Buddy</span>
+          <div class="project-info">
+            <span class="project-name">Study Buddy</span>
+            <p class="project-desc">A study companion app built to help students stay organized and focused.</p>
+          </div>
           <a class="pill" href="https://delightful-study-buddy-flow.base44.app/" target="_blank" rel="noopener">Visit site →</a>
         </div>
         <div class="project">
-          <span class="project-name">What Now</span>
+          <div class="project-info">
+            <span class="project-name">What Now</span>
+            <p class="project-desc">Helps PYP learners (Grades 1–5) at our school discover a passion project they'd love.</p>
+          </div>
+          <span class="pill soon">Coming soon</span>
+        </div>
+        <div class="project">
+          <div class="project-info">
+            <span class="project-name">Pickleball Charity Website</span>
+            <p class="project-desc">A site built to support and spread awareness for a pickleball charity.</p>
+          </div>
           <span class="pill soon">Coming soon</span>
         </div>
       </div>
